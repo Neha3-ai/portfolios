@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Neha Mahankali - Computer Science undergraduate, developer and problem solver.">
+  <title>Neha Mahankali | Developer Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #09090f;
+      --surface: #11111b;
+      --surface-2: #171725;
+      --text: #f5f5f7;
+      --muted: #a6a6b3;
+      --accent: #9b7cff;
+      --accent-2: #6ee7f9;
+      --border: rgba(255,255,255,.10);
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(155,124,255,.14), transparent 30%),
+        radial-gradient(circle at 85% 20%, rgba(110,231,249,.10), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(92%, var(--max)); margin: auto; }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      background: rgba(9,9,15,.72);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      font-size: .92rem;
+      transition: .25s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: 0;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    header {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 110px 0 70px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .eyebrow {
+      color: var(--accent-2);
+      font-weight: 700;
+      font-size: .92rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-size: clamp(3.2rem, 8vw, 6.8rem);
+      line-height: .94;
+      letter-spacing: -.075em;
+      max-width: 850px;
+    }
+    h1 .gradient {
+      background: linear-gradient(100deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .hero-text {
+      max-width: 680px;
+      margin: 1.5rem 0 2rem;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+    .buttons { display: flex; flex-wrap: wrap; gap: .8rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      padding: .82rem 1.15rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: transform .2s, border-color .2s, background .2s;
+      font-weight: 700;
+    }
+    .btn:hover { transform: translateY(-3px); border-color: rgba(155,124,255,.55); }
+    .btn.primary {
+      background: var(--accent);
+      color: #0c0915;
+      border-color: transparent;
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 330px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: linear-gradient(145deg, rgba(155,124,255,.15), rgba(110,231,249,.06));
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .orb {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      filter: blur(.2px);
+      box-shadow: 0 0 90px rgba(155,124,255,.45);
+      animation: float 5s ease-in-out infinite;
+    }
+    .code-symbol {
+      position: absolute;
+      font-size: 7rem;
+      font-weight: 900;
+      color: rgba(255,255,255,.86);
+      letter-spacing: -.15em;
+    }
+    @keyframes float {
+      50% { transform: translateY(-16px) scale(1.04); }
+    }
+
+    section { padding: 95px 0; }
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: -.055em;
+      margin-bottom: .75rem;
+    }
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 680px;
+      margin-bottom: 2.3rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    .card {
+      background: rgba(17,17,27,.82);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      transition: .25s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(155,124,255,.35);
+    }
+    .about-copy { color: var(--muted); font-size: 1.03rem; }
+    .info-list { display: grid; gap: 1rem; }
+    .info-item small { display:block; color:var(--muted); }
+    .info-item strong { font-size: 1.05rem; }
+
+    /* SKILLS */
+    .skill-groups {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .skill-group h3 { margin-bottom: .8rem; }
+    .tags { display:flex; flex-wrap:wrap; gap:.55rem; }
+    .tag {
+      padding: .45rem .7rem;
+      border-radius: 999px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: #dddde8;
+      font-size: .88rem;
+    }
+
+    /* PROJECTS */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+    .project {
+      display: flex;
+      flex-direction: column;
+      min-height: 310px;
+    }
+    .project-number {
+      color: var(--accent);
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .project h3 { font-size: 1.45rem; margin-bottom: .65rem; }
+    .project p { color: var(--muted); }
+    .project ul {
+      color: var(--muted);
+      margin: 1rem 0 1.2rem 1.15rem;
+    }
+    .project-footer { margin-top:auto; display:flex; gap:.65rem; flex-wrap:wrap; }
+    .mini-btn {
+      padding: .55rem .75rem;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: .85rem;
+      font-weight: 700;
+    }
+    .mini-btn:hover { border-color: var(--accent); }
+
+    /* EDUCATION / DSA */
+    .two-col {
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:1.2rem;
+    }
+    .stat {
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: -.06em;
+      color: var(--accent);
+    }
+    .muted { color: var(--muted); }
+
+    /* CONTACT */
+    .contact {
+      text-align: center;
+      padding: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      background: linear-gradient(135deg, rgba(155,124,255,.12), rgba(110,231,249,.06));
+    }
+    .contact p { color:var(--muted); max-width:620px; margin:0 auto 1.6rem; }
+    .contact-links { display:flex; justify-content:center; gap:.7rem; flex-wrap:wrap; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 0;
+      color: var(--muted);
+      text-align:center;
+      font-size:.9rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 850px) {
+      .hero, .about-grid, .two-col, .projects, .skill-groups {
+        grid-template-columns: 1fr;
+      }
+      .hero { gap: 2rem; }
+      .hero-card { min-height: 260px; }
+      .nav-links {
+        display:none;
+        position:absolute;
+        top:72px; left:0; right:0;
+        padding:1rem 4%;
+        background:rgba(9,9,15,.97);
+        border-bottom:1px solid var(--border);
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .nav-links.open { display:flex; }
+      .menu-btn { display:block; }
+    }
+
+    @media (max-width: 500px) {
+      section { padding: 72px 0; }
+      header { padding-top:100px; }
+      h1 { font-size: 3.5rem; }
+      .contact { padding: 2rem 1rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="#home" class="logo">Neha<span>.</span></a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header id="home">
+    <div class="container hero">
+      <div>
+        <div class="eyebrow">Computer Science • Developer • Problem Solver</div>
+
+        <h1>
+          Hi, I'm <span class="gradient">Neha.</span>
+        </h1>
+
+        <p class="hero-text">
+          A motivated Computer Science undergraduate who enjoys building practical
+          software solutions, exploring machine learning, and solving problems
+          with data structures and algorithms.
+        </p>
+
+        <div class="buttons">
+          <a class="btn primary" href="#projects">View Projects →</a>
+          <a class="btn" href="https://github.com/Neha3-ai" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn" href="https://www.linkedin.com/in/neha-mahankali-6a292432a" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <div class="hero-card" aria-hidden="true">
+        <div class="orb"></div>
+        <div class="code-symbol">&lt;/&gt;</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="about">
+      <div class="container reveal">
+        <div class="eyebrow">01 — About</div>
+        <h2 class="section-title">A little about me.</h2>
+
+        <div class="about-grid">
+          <div class="card about-copy">
+            <p>
+              I'm a Computer Science and Engineering undergraduate at
+              Vignan Institute of Technology and Science. I have a strong
+              foundation in Python, Java, C, DSA, OOP, DBMS, OS and SQL.
+            </p>
+            <br>
+            <p>
+              I enjoy developing full-stack and machine-learning applications
+              using technologies such as Flask, React, PHP and MySQL.
+              I'm particularly interested in turning ideas into useful,
+              practical software.
+            </p>
+          </div>
+
+          <div class="card info-list">
+            <div class="info-item">
+              <small>Location</small>
+              <strong>Hyderabad, India</strong>
+            </div>
+            <div class="info-item">
+              <small>Email</small>
+              <strong><a href="mailto:mahankalineha3@gmail.com">mahankalineha3@gmail.com</a></strong>
+            </div>
+            <div class="info-item">
+              <small>Current focus</small>
+              <strong>Software Development & Problem Solving</strong>
+            </div>
+            <div class="info-item">
+              <small>LeetCode</small>
+              <strong>225+ Problems Solved</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container reveal">
+        <div class="eyebrow">02 — Skills</div>
+        <h2 class="section-title">My toolkit.</h2>
+        <p class="section-subtitle">
+          Technologies and computer science fundamentals I have worked with.
+        </p>
+
+        <div class="skill-groups">
+          <div class="card skill-group">
+            <h3>Languages</h3>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Java</span>
+              <span class="tag">C</span>
+            </div>
+          </div>
+
+          <div class="card skill-group">
+            <h3>Web Development</h3>
+            <div class="tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">React</span>
+              <span class="tag">Flask</span>
+              <span class="tag">PHP</span>
+            </div>
+          </div>
+
+          <div class="card skill-group">
+            <h3>Core CS</h3>
+            <div class="tags">
+              <span class="tag">DSA</span>
+              <span class="tag">OOP</span>
+              <span class="tag">DBMS</span>
+              <span class="tag">OS</span>
+              <span class="tag">Computer Networks</span>
+              <span class="tag">Software Engineering</span>
+            </div>
+          </div>
+
+          <div class="card skill-group">
+            <h3>Database & Tools</h3>
+            <div class="tags">
+              <span class="tag">MySQL</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Git</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">VS Code</span>
+              <span class="tag">XAMPP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container reveal">
+        <div class="eyebrow">03 — Projects</div>
+        <h2 class="section-title">Things I've built.</h2>
+        <p class="section-subtitle">
+          A selection of projects focused on machine learning, full-stack
+          development and practical software solutions.
+        </p>
+
+        <div class="projects">
+
+          <article class="card project">
+            <div class="project-number">01</div>
+            <h3>Student Performance Prediction System</h3>
+            <p>
+              A full-stack machine-learning web application designed to predict
+              student academic performance.
+            </p>
+            <ul>
+              <li>Compared Linear Regression, Random Forest and Decision Tree models.</li>
+              <li>Interactive performance visualization and risk classification.</li>
+              <li>Automated PDF report generation for prediction results.</li>
+            </ul>
+            <div class="project-footer">
+              <span class="tag">Python</span>
+              <span class="tag">Flask</span>
+              <span class="tag">Machine Learning</span>
+              <a class="mini-btn" href="https://github.com/Neha3-ai/StudentPerformancePrediction" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </article>
+
+          <article class="card project">
+            <div class="project-number">02</div>
+            <h3>Employee Attendance & Worksheet Management</h3>
+            <p>
+              A web-based system for managing employee attendance, worksheet
+              submissions and reports.
+            </p>
+            <ul>
+              <li>Secure login with session management and role-based access.</li>
+              <li>Attendance tracking and worksheet submission.</li>
+              <li>Weekend and time-based submission restrictions.</li>
+              <li>Structured database design and optimized SQL queries.</li>
+            </ul>
+            <div class="project-footer">
+              <span class="tag">PHP</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">SQL</span>
+              <a class="mini-btn" href="https://github.com/Neha3-ai/final-ip-project" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container reveal">
+        <div class="eyebrow">04 — Education & DSA</div>
+        <h2 class="section-title">Learning & growing.</h2>
+
+        <div class="two-col">
+          <div class="card">
+            <div class="eyebrow">Education</div>
+            <h3>Computer Science & Engineering</h3>
+            <p class="muted">Vignan Institute of Technology and Science</p>
+            <p class="muted">2023 — 2027</p>
+            <br>
+            <div class="stat">8.9</div>
+            <p class="muted">CGPA</p>
+          </div>
+
+          <div class="card">
+            <div class="eyebrow">Problem Solving</div>
+            <div class="stat">225+</div>
+            <h3>LeetCode Problems Solved</h3>
+            <p class="muted">
+              Building a stronger foundation in data structures, algorithms
+              and problem solving through consistent practice.
+            </p>
+            <br>
+            <a class="mini-btn" href="https://leetcode.com/u/Neha_Maha/" target="_blank" rel="noopener">View LeetCode ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container reveal">
+        <div class="contact">
+          <div class="eyebrow">05 — Contact</div>
+          <h2 class="section-title">Let's connect.</h2>
+          <p>
+            I'm always interested in learning, building useful projects and
+            connecting with people in technology.
+          </p>
+
+          <div class="contact-links">
+            <a class="btn primary" href="mailto:mahankalineha3@gmail.com">Email Me</a>
+            <a class="btn" href="https://github.com/Neha3-ai" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/neha-mahankali-6a292432a" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Neha Mahankali. Built with HTML, CSS & JavaScript.
+    </div>
+  </footer>
+
+  <script>
+    // Mobile navigation
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => navLinks.classList.remove("open"));
+    });
+
+    // Scroll reveal animation
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
